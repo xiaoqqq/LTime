@@ -39,29 +39,34 @@ public class MainActivity extends AppCompatActivity {
         initData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+    }
+
     private void initData() {
         String startTime = "2019-03-23";
         DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date startDate = simpleDateFormat.parse(startTime);
             Date currentDate = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
-            RollingTextView tvDay = findViewById(R.id.tv_days);
             Random random = new Random();
             int i = random.nextInt(3);
             mTvPreDays.setText(randomString[i]);
-            tvDay.setText("0");
+            mRollingDays.setText("0");
             mTvDanwei.setText("天");
-            tvDay.setAnimationDuration(3000L);
-            tvDay.setCharStrategy(Strategy.SameDirectionAnimation(Direction.SCROLL_UP));
-            tvDay.addCharOrder(CharOrder.Number);
-            tvDay.setAnimationInterpolator(new AccelerateDecelerateInterpolator());
-            tvDay.addAnimatorListener(new AnimatorListenerAdapter() {
+            mRollingDays.setAnimationDuration(2000L);
+            mRollingDays.setCharStrategy(Strategy.SameDirectionAnimation(Direction.SCROLL_UP));
+            mRollingDays.addCharOrder(CharOrder.Number);
+            mRollingDays.setAnimationInterpolator(new AccelerateDecelerateInterpolator());
+            mRollingDays.addAnimatorListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     //finsih
                 }
             });
-            tvDay.setText(DateUtils.getDaysByDate(startDate, currentDate) + "");
+            mRollingDays.setText(DateUtils.getDaysByDate(startDate, currentDate) + "");
         } catch (ParseException e) {
             e.printStackTrace();
         }
