@@ -1,12 +1,18 @@
 package com.xiaoqqq.l_time;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xiaoqqq.l_time.utils.DateUtils;
 import com.yy.mobile.rollingtextview.CharOrder;
 import com.yy.mobile.rollingtextview.RollingTextView;
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTvDanwei;
     private String[] randomString = {"嘿嘿，恋爱", "我们在一起", "小宝贝坠落爱河的第"};
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +44,23 @@ public class MainActivity extends AppCompatActivity {
 
         initView();
         initData();
+        initPermission();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initData();
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @SuppressLint("CheckResult")
+    private void initPermission() {
+        final RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_PHONE_STATE)
+                .subscribe(granted -> {
+                    if (granted) {
+
+                    } else {
+                        finish();
+                    }
+                });
     }
 
     private void initData() {
