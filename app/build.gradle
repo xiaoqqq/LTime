@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.xiaoqqq.l_time"
         minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0.0"
+        targetSdkVersion 27
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -16,15 +15,62 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "release"
+
+    signingConfigs {
+        ltime {
+            storeFile file(NORMAL_KEY_STORE_FILE)
+            storePassword NORMAL_KEY_STORE_PASSWORD
+            keyAlias NORMAL_KEY_STORE_KEY_ALIAS
+            keyPassword NORMAL_KEY_STORE_KEY_PASSWORD
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    productFlavors {
+        ltime {
+            dimension "release"
+            applicationId = "com.xiaoqqq.l_time"
+            signingConfig signingConfigs.ltime
+            versionName "1.0.0"
+            versionCode 1
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            //def date = new Date().format("yyyyMMdd" , TimeZone.getTimeZone("Asia/Shanghai"))
+            def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+08"))
+            if (variant.buildType.name.equals('debug')) {
+                outputFileName =
+                        "${variant.productFlavors[0].name}_debug_${variant.productFlavors[0].versionName}_${date}.apk"
+            }
+            if (variant.buildType.name.equals('release')) {
+                outputFileName =
+                        "${variant.productFlavors[0].name}_release_${variant.productFlavors[0].versionName}_${date}.apk"
+            }
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.github.YvesCheung:RollingText:1.2.0'
+
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+    /**=============================bugly=============================**/
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
 }
