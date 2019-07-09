@@ -1,4 +1,4 @@
-package com.xiaoqqq.l_time;
+package com.xiaoqqq.l_time.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 
+import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.utils.DateUtils;
 
 import java.text.DateFormat;

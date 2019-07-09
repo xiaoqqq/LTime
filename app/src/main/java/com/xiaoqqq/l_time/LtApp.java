@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex;
 
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
+import com.xiaoqqq.l_time.activity.MainActivity;
 
 /**
  * @author xiaoqqq

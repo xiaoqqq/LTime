@@ -1,4 +1,4 @@
-package com.xiaoqqq.l_time;
+package com.xiaoqqq.l_time.activity;
 
 import android.Manifest;
 import android.animation.Animator;
@@ -8,11 +8,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.utils.DateUtils;
 import com.yy.mobile.rollingtextview.CharOrder;
 import com.yy.mobile.rollingtextview.RollingTextView;
