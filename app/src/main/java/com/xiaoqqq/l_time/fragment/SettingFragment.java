@@ -1,14 +1,20 @@
 package com.xiaoqqq.l_time.fragment;
 
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.tencent.bugly.beta.Beta;
 import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.base.BaseFragment;
+import com.xiaoqqq.l_time.utils.AppUtil;
 
-public class SettingFragment extends BaseFragment {
+public class SettingFragment extends BaseFragment implements View.OnClickListener {
 
-    private TextView mTextView;
+    private ConstraintLayout mCheckUpdate;
+    private ConstraintLayout mAboutMe;
+    private TextView mVersion;
 
     @Override
     protected int getFragmentLayoutId() {
@@ -17,12 +23,35 @@ public class SettingFragment extends BaseFragment {
 
     @Override
     protected void initView(View rootView) {
-        mTextView = rootView.findViewById(R.id.setting_tv_message);
+        mCheckUpdate = rootView.findViewById(R.id.setting_check_update);
+        mAboutMe = rootView.findViewById(R.id.setting_about_me);
+        mVersion = rootView.findViewById(R.id.setting_version);
     }
 
     @Override
     public void initData() {
         super.initData();
-        mTextView.setText("设置界面");
+        mVersion.setText("版本号：" + AppUtil.getAppVersionName() + "_" + AppUtil.getAppVersionCode());
+    }
+
+    @Override
+    public void initListener() {
+        super.initListener();
+        mCheckUpdate.setOnClickListener(this);
+        mAboutMe.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.setting_check_update:
+                Beta.checkUpgrade(true, false);
+                break;
+            case R.id.setting_about_me:
+                Toast.makeText(getActivity(), "关于我们", Toast.LENGTH_LONG).show();
+                break;
+            default:
+                break;
+        }
     }
 }
