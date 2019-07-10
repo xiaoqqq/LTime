@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xiaoqqq.l_time.R;
+import com.xiaoqqq.l_time.base.BaseActivity;
 import com.xiaoqqq.l_time.utils.DateUtils;
 import com.xiaoqqq.l_time.utils.StatusBarUtil;
 import com.yy.mobile.rollingtextview.CharOrder;
@@ -30,50 +31,30 @@ import java.util.Random;
 /**
  * @author xiaoqqq
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private RollingTextView mRollingDays;
     private TextView mTvPreDays;
     private TextView mTvDanwei;
     private String[] randomString = {"嘿嘿，恋爱", "我们在一起", "小宝贝坠落爱河的第"};
-    //是否为沉浸式状态栏  默认true
-    public boolean mImmersive = true;
-    //状态栏的字体是否为黑色  默认true
-    public boolean mDarkMode = true;
-    public int defStatusColor = Color.WHITE;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
+        mTvPreDays = findViewById(R.id.tv_pre_day);
+        mTvDanwei = findViewById(R.id.tv_danwei);
+        mRollingDays = findViewById(R.id.tv_days);
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        if (mImmersive) {
-            StatusBarUtil.immersive(this, defStatusColor, 1);//1 完全透明
-        }
-        StatusBarUtil.darkMode(this, mDarkMode);
-
-        initView();
-        initData();
+    protected void initData() {
+        super.initData();
         initPermission();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @SuppressLint("CheckResult")
-    private void initPermission() {
-        final RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions
-                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_PHONE_STATE)
-                .subscribe(granted -> {
-                    if (granted) {
-
-                    } else {
-                        finish();
-                    }
-                });
-    }
-
-    private void initData() {
         String startTime = "2019-03-23";
         DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -100,9 +81,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initView() {
-        mTvPreDays = findViewById(R.id.tv_pre_day);
-        mTvDanwei = findViewById(R.id.tv_danwei);
-        mRollingDays = findViewById(R.id.tv_days);
+    @SuppressLint("CheckResult")
+    private void initPermission() {
+        final RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_PHONE_STATE)
+                .subscribe(granted -> {
+                    if (granted) {
+
+                    } else {
+                        finish();
+                    }
+                });
     }
+
 }

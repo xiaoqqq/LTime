@@ -24,7 +24,7 @@
         android:theme="@style/LtTheme.Base"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <receiver android:name=".widget.NewAppWidget">
+        <receiver android:name=".widget.DesktopWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
