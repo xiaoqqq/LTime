@@ -24,4 +24,9 @@
         <item name="android:selectableItemBackgroundBorderless" tools:ignore="NewApi">@null</item>
     </style>
 
+    <!--设置Tablayout字体大小-->
+    <style name="TabLayoutTextSize">
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

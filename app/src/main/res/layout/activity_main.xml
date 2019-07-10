@@ -1,60 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context=".activity.MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ffffff"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+              tools:context=".activity.MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_bg"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY" />
-
-    <LinearLayout
-        android:id="@+id/tv_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:layout_height="50dp">
 
         <TextView
-            android:id="@+id/tv_pre_day"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="1"
-            android:gravity="center"
-            android:text="想你的"
-            android:textColor="#fff"
-            android:textSize="17sp"
-            android:textStyle="normal" />
+            android:layout_marginStart="10dp"
+            android:text="纪念日"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.yy.mobile.rollingtextview.RollingTextView
-            android:id="@+id/tv_days"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:shadowColor="#ffdd00"
-            android:text="1"
-            android:textColor="#f00"
-            android:textSize="17sp"
-            android:textStyle="italic" />
+    </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_danwei"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="1"
-            android:gravity="center"
-            android:text="天的的的"
-            android:textColor="#fff"
-            android:textSize="17sp"
-            android:textStyle="normal" />
-    </LinearLayout>
+    <!--<LinearLayout-->
+    <!--android:id="@+id/tv_text"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="20dp"-->
+    <!--android:layout_marginTop="30dp"-->
+    <!--android:gravity="center_horizontal"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="5dp">-->
 
+    <!--<TextView-->
+    <!--android:id="@+id/tv_pre_day"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:ems="1"-->
+    <!--android:gravity="center"-->
+    <!--android:text="想你的"-->
+    <!--android:textColor="#fff"-->
+    <!--android:textSize="16sp"-->
+    <!--android:textStyle="normal"/>-->
 
-</RelativeLayout>
+    <!--<com.yy.mobile.rollingtextview.RollingTextView-->
+    <!--android:id="@+id/tv_days"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:shadowColor="#ffdd00"-->
+    <!--android:text="1"-->
+    <!--android:textColor="#f00"-->
+    <!--android:textSize="17sp"-->
+    <!--android:textStyle="italic"/>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_danwei"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:ems="1"-->
+    <!--android:gravity="center"-->
+    <!--android:text="天的的的"-->
+    <!--android:textColor="#fff"-->
+    <!--android:textSize="16sp"-->
+    <!--android:textStyle="normal"/>-->
+    <!--</LinearLayout>-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </android.support.v4.view.ViewPager>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/main_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:tabBackground="@color/tabbar_bg_color"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#2BB3FE"
+        app:tabTextAppearance="@style/TabLayoutTextSize"
+        app:tabTextColor="@color/text_color_white">
+
+    </android.support.design.widget.TabLayout>
+
+</LinearLayout>

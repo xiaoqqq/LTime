@@ -65,6 +65,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    implementation 'com.android.support:design:27.1.1'
+
     implementation 'com.github.YvesCheung:RollingText:1.2.0'
 
     implementation 'com.android.support:multidex:1.0.3'
@@ -78,8 +80,10 @@ dependencies {
     implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
 
-
     implementation('com.jaeger.statusbarutil:library:1.4.0') {
         exclude group: 'com.android.support'
     }
+
+    /**=============================屏幕适配方案=============================**/
+    implementation 'me.jessyan:autosize:1.1.2'
 }

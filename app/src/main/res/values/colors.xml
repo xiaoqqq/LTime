@@ -478,4 +478,7 @@
     </color>
     <color name="ui_common_window_bg_color">#f2f2f2</color>
     <color name="half_transparent">#80000000</color>
+
+    <!--LT color-->
+    <color name="tabbar_bg_color">#292929</color>
 </resources>

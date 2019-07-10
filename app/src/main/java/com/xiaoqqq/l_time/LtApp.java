@@ -8,6 +8,9 @@ import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.xiaoqqq.l_time.activity.MainActivity;
 
+import me.jessyan.autosize.AutoSizeConfig;
+import me.jessyan.autosize.unit.Subunits;
+
 /**
  * @author xiaoqqq
  * @package com.xiaoqqq.l_time
@@ -20,6 +23,11 @@ public class LtApp extends Application {
     public void onCreate() {
         super.onCreate();
         MultiDex.install(getApplicationContext());
+        AutoSizeConfig.getInstance()
+                .getUnitsManager()
+                .setSupportDP(true)
+                .setSupportSP(true)
+                .setSupportSubunits(Subunits.MM);
         initSdk();
     }
 
