@@ -77,4 +77,9 @@ dependencies {
     /**=============================bugly=============================**/
     implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+
+
+    implementation('com.jaeger.statusbarutil:library:1.4.0') {
+        exclude group: 'com.android.support'
+    }
 }

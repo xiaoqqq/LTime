@@ -1,11 +1,27 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="LtTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColorPrimary">@color/ui_common_level1_text_color</item>
+        <item name="android:textColorPrimaryInverse">@color/ui_common_level1_white_text_color</item>
+        <item name="android:textColorSecondaryInverse">@color/ui_common_level2_white_text_color
+        </item>
+        <item name="android:windowBackground">@color/ui_common_page_bg_color</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:logo">@android:color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorAccent">#FFB5B5B5</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!-- 通用控件 -->
+        <item name="android:textSize">14sp</item>
+        <!--全局禁用多指操作-->
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <!--去除appcompat_v7 button点击水波纹-->
+        <item name="android:selectableItemBackground">@null</item>
+        <item name="android:selectableItemBackgroundBorderless" tools:ignore="NewApi">@null</item>
     </style>
 
 </resources>

@@ -1,6 +1,481 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="pressed_bg">#7ff0f1f3</color>
+
+
+    <color name="taolive_text_color_gray">#ff999999</color>
+    <color name="taolive_text_color_light_gray">#ff5f646a</color>
+    <color name="taolive_text_color_red">#ffff2851</color>
+
+
+    <color name="text_color_black">#ff545759</color>
+    <color name="text_color_blue">#ff3eb0fb</color>
+    <color name="text_color_bread_gray">#ff444444</color>
+    <color name="text_color_conf_green">#ff4bc117</color>
+    <color name="text_color_dark">#ff222222</color>
+    <color name="text_color_dark_gray">#ff949494</color>
+    <color name="text_color_deep_blue">#ff008ccc</color>
+    <color name="text_color_ding_dark">#ff5d5b50</color>
+    <color name="text_color_gray">#ffababab</color>
+    <color name="text_color_green">#ff3bc534</color>
+    <color name="text_color_hint">#ffababab</color>
+    <color name="text_color_light_gray">#ff777777</color>
+    <color name="text_color_link_content">#ff858c99</color>
+    <color name="text_color_link_tip">#ff999999</color>
+    <color name="text_color_red">#fffc4145</color>
+    <color name="text_color_tab">#ff03a9f4</color>
+    <color name="text_color_tips">#ff858199</color>
+    <color name="text_color_warn_black">#ff353535</color>
+    <color name="text_color_white">#ffffffff</color>
+    <color name="text_color_white_alpha_40">#67ffffff</color>
+    <color name="text_color_white_alpha_60">#99ffffff</color>
+    <color name="text_color_white_alpha_80">#ccffffff</color>
+    <color name="text_color_white_aphla">#88ffffff</color>
+    <color name="text_enterprise_color">#ffaf9a7c</color>
+    <color name="text_tip_color">#ff8d8d8d</color>
+    <color name="ui_common_dark_overlay_20">#28000000</color>
+    <color name="ui_common_cell_ripple_bg_color">@color/ui_common_dark_overlay_20</color>
+    <color name="webview_splitter">#ffe4e4e4</color>
+    <color name="ui_common_content_fg_color_alpha_56">#8f191f25</color>
+    <color name="base_middle_gray">#f3f3f3</color>
+    <color name="base_middle_gray_light">#f8f8f8</color>
+    <color name="divider_line">#f0f0f0</color>
+    <color name="dark_orange">#FFFF8800</color>
+    <color name="common_background">#f2f2f2</color>
+    <!--浅色字体-->
+    <color name="light_color_font">#8f8f8f</color>
+
+    <item name="alpha_background" type="color">#F0FCFCFC</item>
+    <!--标题颜色-->
+    <item name="title" type="color">#1f1e1e</item>
+    <!--子标题颜色-->
+    <item name="subtitle" type="color">#6a6a6a</item>
+    <!-- 设置界面邮箱颜色-->
+    <color name="settings_email">#6a6a6a</color>
+    <!--自己的标题颜色-->
+    <item name="mytitle" type="color">#e8eef5</item>
+    <!--自己的子标题颜色-->
+    <item name="mysubtitle" type="color">#32CD32</item>
+    <color name="title_background">#2a87de</color>
+    <color name="actionbar_title_unselected">#a7cee7</color>
+
+    <!--选中状态下的背景色-->
+    <item name="active_background" type="color">#e8e8e8</item>
+    <!--entry背景色-->
+    <item name="entry_background" type="color">#bfffffff</item>
+    <!--entry选中状态下的背景色-->
+    <item name="entry_active_background" type="color">#e8e8e8</item>
+    <!--group背景色-->
+    <item name="group_background" type="color">#bffdfdfd</item>
+    <color name="group_text">#2a2a2a</color>
+    <!--group选中状态下的背景色-->
+    <item name="group_active_background" type="color">#eeeeee</item>
+    <item name="dialog_title_background" type="color">#2a87de</item>
+    <item name="dialog_title_text_color" type="color">#fafafa</item>
+    <item name="dialog_message_color" type="color">#1f1e1e</item>
+    <item name="dialog_message_background" type="color">#fdfdfd</item>
+    <item name="dialog_button_pressed" type="color">#f54321</item>
+
+    <color name="title_background_selected">#1573ca</color>
+    <!-- 会话列表 时间-->
+    <item name="session_time" type="color">#8f8f8f</item>
+    <!-- 拨号盘-->
+    <item name="dialpad" type="color">#5f5f5f</item>
+    <!-- 设置 具体内容-->
+    <item name="settings_content" type="color">#848484</item>
+    <!--工具条背景-->
+    <item name="background_toolbar" type="color">#FFcdd2d4</item>
+    <!--divider颜色-->
+    <item name="divider" type="color">#FFcdd2d4</item>
+    <!-- 选中背景色 -->
+    <item name="background_select" type="color">#4A4A4A</item>
+    <!-- 设置界面背景-->
+    <item name="fragment_settings_background" type="color">#F2F2F2</item>
+    <!-- 设置界面分割线的颜色-->
+    <item name="fragment_settings_split_line" type="color">#DCDCDC</item>
+    <!-- 菜单栏、聊天窗口底边工具栏-->
+    <item name="menu_background" type="color">#bffcfcfc</item>
+    <item name="menu_split" type="color">#c3c1c1</item>
+    <!-- 主界面组织架构、群、群组导航的背景色 -->
+    <item name="nav_background" type="color">#f5f5f5</item>
+    <!-- 内容区域颜色-->
+    <color name="content_background">#f5f5f5</color>
+    <!-- 联系人选择界面，界面遮盖色-->
+    <color name="contact_chooser_mask_color">#d0000000</color>
+    <!--（搜索好友、群）被选中的选项的背景颜色。输入框背景颜色-->
+    <item name="search_background" type="color">#e8e9ea</item>
+    <item name="search_input_box" type="color">#fdfdfd</item>
+    <!--应用中app名字-->
+    <item name="appnametextview_color" type="color">#666</item>
+    <item name="headtextview" type="color">#43474C</item>
+
+    <item name="slight" type="color">#FFeaeaea</item>
+    <item name="gray" type="color">#FFbebebe</item>
+
+    <item name="darkblue" type="color">#FF3A5FCD</item>
+    <item name="darkpurple" type="color">#FF9933CC</item>
+    <item name="darkgreen" type="color">#FF669900</item>
+    <item name="darkorange" type="color">#FFFF8800</item>
+    <item name="darkred" type="color">#FFCC0000</item>
+    <item name="lightgreen" type="color">#32CD32</item>
+    <item name="lightgray" type="color">#cccccc</item>
+    <!-- *******************************chatActivity******************************* -->
+    <!--发送按钮颜色-->
+    <item name="sendcolor" type="color">#2BB3FE</item>
+    <!--聊天界面buttom Bar-->
+    <item name="chat_solid_text" type="color">#F0F0F0</item>
+
+    <integer-array name="androidcolors">
+        <item>@color/darkblue</item>
+        <item>@color/darkpurple</item>
+        <item>@color/darkgreen</item>
+        <item>@color/darkorange</item>
+        <item>@color/darkred</item>
+    </integer-array>
+
+    <color name="actionbar_alpha">#26000000</color>
+    <color name="map_bar">#404144</color>
+
+    <color name="chat_time_background">#c2c2c2</color>
+    <!-- midea begin -->
+    <!-- common -->
+    <!--背景色-->
+    <color name="common_backgroud">#FAFAFA</color>
+    <color name="deviceidtxtcolor">#bbbbbb</color>
+    <color name="list_background">#eeeeee</color>
+    <color name="common_line">#d8d8d8</color>
+    <color name="border_gray">#8f8f8f</color>
+    <color name="black_transparent">#80000000</color>
+    <color name="white_transparent">#90FFFFFF</color>
+    <!-- 灰色 -->
+    <!--login-->
+    <color name="blue_bg">#00abec</color>
+    <color name="bt_login_bg">#4bcdff</color>
+
+    <color name="bg_blue">#0098ea</color>
+
+    <color name="bg_toolbar">#042E6F</color>
+    <color name="bg_toolbar_press">#042E6F</color>
+
+    <color name="bg_bottom_main">#fbfbfb</color>
+
+    <color name="login_input">#efeff0</color>
+    <color name="login_hint">#8cffffff</color>
+    <color name="login_text">#ffffff</color>
+    <color name="bg_login_btn">#4baffc</color>
+
+    <color name="bg_toast">#90000000</color>
+
+    <!--Lock-->
+    <color name="lock_correct">#bffdfdfd</color>
+    <color name="lock_wrong">#E2384E</color>
+    <color name="lock_bg">#404144</color>
+    <color name="lock_pre_allow">#427bcf</color>
+    <!-- midea end -->
+    <!--Navigation-->
+    <color name="nav_bg">#444040</color>
+    <color name="nav_text_bg_red">#ea513d</color>
+    <color name="nav_text_gray">#a5a6a8</color>
+    <color name="nav_common_line">#DCDCDC</color>
+
+    <!-- Setting -->
+    <color name="setting_text_gray">#7d7d7d</color>
+    <color name="setting_logout_bg">#ea513d</color>
+
+    <!--Message-->
+    <color name="message_subtitle_text_gray">#807a71</color>
+    <color name="message_date_text_gray">#b2aa9e</color>
+    <color name="message_time_bg">#ec5438</color>
+    <item name="top_function_grag" type="color">#50000000</item>
+    <item name="top_function_line" type="color">#36a8ef</item>
+
+    <!--tip-->
+    <color name="net_not_availabel">#ffe0e0</color>
+    <color name="transparent">#00000000</color>
+
+    <!--map-->
+
+
+    <!-- annto -->
+    <color name="annto_home_black">#444444</color>
+    <color name="annto_home_gray">#999999</color>
+
+    <color name="register_bg_gray">#F1F1F1</color>
+
+
+    <item name="msg_contact_top_text" type="color">#5f5f5f</item>
+    <item name="msg_contact_top_divider" type="color">#DCDCDC</item>
+
+    <color name="chat_to_text_color">#FDFDFD</color>
+
+    <color name="gray_white2_transparent">#e6f7f7f7</color>
+
+    <color name="gray_white2">#f7f7f7</color>
+    <color name="gray_black">#333333</color>
+    <color name="textColorGray">#4A4A4A</color>
+    <color name="border_color">#DCDCDC</color>
+    <color name="appheadertxt">#6d6d6d</color>
+    <color name="appheaderbg">#f2f2f2</color>
+    <color name="unbindbg">#f2f2f2</color>
+    <color name="progressbg">#aa999999</color>
+    <color name="unbind_input_bg">#ccdddddd</color>
+
+    <color name="actionbar_background">#6d6d6d</color>
+    <color name="actionbar_background_dark">#aa999999</color>
+    <color name="actionbar_background_semitransp">#8f8f8f</color>
+    <color name="actionbar_tint">#FFD0E5</color>
+
+    <color name="text_normal">#CCCCCC</color>
+
+
+    <color name="title_blue">#ff3b96ea</color>
+    <color name="grey200">#eeeeee</color>
+    <color name="orange400">#ffa726</color>
+    <color name="select_text_color">#ff9046</color>
+
+    <color name="listview_footer_item_color">#dcdcdc</color>
+    <color name="login_edittext_bg">#26ffffff</color>
+    <color name="login_text_and_btn_bg">#fe954f</color>
+    <color name="login_text_and_btn_bg_pre">#cf773b</color>
+    <color name="gray_alph_press">#bdbdbd</color>
+    <color name="gray_alph_image_press">#3cbdbdbd</color>
+    <color name="blue_btn_update">#4A9AE9</color>
+    <color name="gray_cancel">#C9C9C9</color>
+    <color name="gray_update_info">#999999</color>
+    <color name="gray_press_bg">#F0F0F0</color>
+
+    <color name="card_background">#ffffff</color>
+    <color name="lite_blue">#ff359ff2</color>
+    <color name="window_background">#00000000</color>
+    <color name="gray_share_text">#666666</color>
+    <color name="banner_indicator_nor">#d9d9d9</color>
+    <color name="banner_indicator_select">#b2b2b2</color>
+    <color name="bg_card_shadow">#10000000</color>
+    <color name="black_de">#DE000000</color>
+    <!-- 默认与选中的颜色 -->
+    <color name="entry_press">#CACACA</color>
+    <color name="text_gray">#8C000000</color>
+    <color name="split_color">#DCDCDC</color>
+    <color name="crc_extend_btn_text_color">#000000</color>
+    <color name="bg_top_conversation">#f3f3f6</color>
+    <color name="common_divider">#F0F0F0</color>
+    <color name="remind_text_color">#2a87de</color>
+
+    <color name="yellow_bottom_bar_select">#FFB741</color>
+    <color name="gray_bottom_bar_default">#AEAEAE</color>
+    <color name="tab_text">#A0A0A0</color>
+    <color name="tab_text_focus">#2BB3FE</color>
+    <color name="tab_notify_bg">#f00</color>
+    <color name="selector_grey">#DDDDDD</color>
+    <color name="default_window_bg">#EFF0F4</color>
+
+    <color name="org_path_before_text_color">#2BB3FE</color>
+    <color name="org_path_last_text_color">#A0A0A0</color>
+
+    <color name="grey">#FFBDBDBD</color>
+
+    <color name="blue">#FF5677FC</color>
+    <color name="blue1">#FFAFBFFF</color>
+    <color name="blue2">#FF91A7FF</color>
+    <color name="blue3">#FF738FFE</color>
+    <color name="blue4">#FF4E6CEF</color>
+    <color name="blue5">#FF455EDE</color>
+    <color name="blue6">#FF3B50CE</color>
+    <color name="blue7">#FF2A36B1</color>
+
+
+    <color name="red">#FFC93437</color>
+    <color name="yellow">#FFF7D23E</color>
+    <color name="green">#FF34A350</color>
+    <color name="gray_38">#383838</color>
+
+    <!--//【浮层】浮层背景不透明度为70%-->
+    <color name="dialog_bg_transparency">#a5000000</color>
+
+
+    <color name="ui_common_alert_bg_color">#fff25643</color>
+    <color name="ui_common_alert_bg_color_alpha_12">#1ef25643</color>
+    <color name="ui_common_alert_bg_color_alpha_28">#47f25643</color>
+    <color name="ui_common_alert_bg_color_dark_overlay_10">#ffd94d3c</color>
+    <color name="ui_common_alert_button_bg_color">@color/ui_common_alert_bg_color</color>
+    <color name="ui_common_alert_button_disabled_bg_color">
+        @color/ui_common_alert_bg_color_alpha_12
+    </color>
+    <color name="ui_common_alert_button_disabled_text_color">
+        @color/ui_common_inverse_content_fg_color
+    </color>
+    <color name="ui_common_alert_button_pressed_bg_color">
+        @color/ui_common_alert_bg_color_dark_overlay_10
+    </color>
+    <color name="ui_common_alert_button_pressed_text_color">
+        @color/ui_common_inverse_content_fg_color
+    </color>
+    <color name="ui_common_alert_button_text_color">@color/ui_common_inverse_content_fg_color
+    </color>
+    <color name="ui_common_alert_icon_bg_color">@color/ui_common_alert_bg_color</color>
+    <color name="ui_common_alert_icon_disabled_bg_color">@color/ui_common_alert_bg_color_alpha_12
+    </color>
+    <color name="ui_common_alert_icon_pressed_bg_color">@color/ui_common_alert_bg_color_alpha_28
+    </color>
+    <color name="ui_common_alert_low_text_color">#ffd74f3f</color>
+    <color name="ui_common_alert_text_color">@color/ui_common_alert_bg_color</color>
+    <color name="ui_common_alert_text_disabled_color">@color/ui_common_alert_bg_color_alpha_12
+    </color>
+    <color name="ui_common_alert_text_pressed_color">@color/ui_common_alert_bg_color_alpha_28
+    </color>
+    <color name="ui_common_button_border_color">@color/ui_common_content_fg_color_alpha_12</color>
+    <color name="ui_common_button_white_border_color">
+        @color/ui_common_inverse_content_fg_color_alpha_12
+    </color>
+    <color name="ui_common_cell_bg_color">@color/ui_common_content_bg_color</color>
+    <color name="ui_common_cell_pressed_bg_color">
+        @color/ui_common_content_bg_color_dark_overlay_20
+    </color>
+    <color name="ui_common_content_bg_color">#ffffffff</color>
+    <color name="ui_common_content_bg_color_alpha_40">#66ffffff</color>
+    <color name="ui_common_content_bg_color_dark_overlay_20">#ffe3e3e3</color>
+    <color name="ui_common_content_fg_color">#ff191f25</color>
+    <color name="ui_common_content_fg_color_alpha_12">#1e191f25</color>
+    <color name="ui_common_content_fg_color_alpha_28">#47191f25</color>
+    <color name="ui_common_content_fg_color_alpha_4">#0a191f25</color>
+    <color name="ui_common_content_fg_color_alpha_40">#66191f25</color>
+    <color name="ui_common_content_fg_color_alpha_64">#a3191f25</color>
+    <color name="ui_common_content_fg_color_alpha_72">#b8191f25</color>
+    <color name="ui_common_content_fg_color_alpha_8">#14191f25</color>
+    <color name="ui_common_content_fg_color_alpha_88">#e1191f25</color>
+    <color name="ui_common_green_icon_bg_color">@color/ui_common_safe_bg_color</color>
+    <color name="ui_common_green_icon_disabled_bg_color">@color/ui_common_safe_bg_color_alpha_12
+    </color>
+    <color name="ui_common_green_icon_pressed_bg_color">@color/ui_common_safe_bg_color_alpha_28
+    </color>
+    <color name="ui_common_input_bg_color">@color/ui_common_content_bg_color</color>
+    <color name="ui_common_inverse_content_fg_color">#ffffffff</color>
+    <color name="ui_common_inverse_content_fg_color_alpha_12">#1effffff</color>
+    <color name="ui_common_inverse_content_fg_color_alpha_28">#47ffffff</color>
+    <color name="ui_common_inverse_content_fg_color_alpha_40">#66ffffff</color>
+    <color name="ui_common_inverse_content_fg_color_alpha_56">#8fffffff</color>
+    <color name="ui_common_inverse_content_fg_color_alpha_72">#b8ffffff</color>
+    <color name="ui_common_level1_button_disabled_bg_color">
+        @color/ui_common_theme_bg_color_alpha_12
+    </color>
+    <color name="ui_common_level1_button_disabled_text_color">
+        @color/ui_common_inverse_content_fg_color
+    </color>
+    <color name="ui_common_level1_button_pressed_bg_color">
+        @color/ui_common_theme_bg_color_dark_overlay_10
+    </color>
+    <color name="ui_common_level1_button_pressed_text_color">
+        @color/ui_common_inverse_content_fg_color
+    </color>
+    <color name="ui_common_level1_button_text_color">@color/ui_common_inverse_content_fg_color
+    </color>
+    <color name="ui_common_level1_icon_bg_color">@color/ui_common_content_fg_color_alpha_40</color>
+    <color name="ui_common_level1_icon_disabled_bg_color">
+        @color/ui_common_content_fg_color_alpha_12
+    </color>
+    <color name="ui_common_level1_line_bg_color">@color/ui_common_content_fg_color_alpha_8</color>
+    <color name="ui_common_level1_plus_icon_bg_color">@color/ui_common_content_fg_color_alpha_64
+    </color>
+    <color name="ui_common_level1_special_text_color">@color/ui_common_content_fg_color_alpha_72
+    </color>
+    <color name="ui_common_level1_text_color">@color/ui_common_content_fg_color_alpha_88</color>
+    <color name="ui_common_level1_white_special_text_color">
+        @color/ui_common_inverse_content_fg_color_alpha_72
+    </color>
+    <color name="ui_common_level1_white_text_color">@color/ui_common_inverse_content_fg_color
+    </color>
+    <color name="ui_common_level2_button_bg_color">@color/ui_common_theme_bg_color_alpha_12</color>
+    <color name="ui_common_level2_button_disabled_bg_color">
+        @color/ui_common_theme_bg_color_alpha_12
+    </color>
+    <color name="ui_common_level2_button_disabled_text_color">
+        @color/ui_common_theme_bg_color_alpha_12
+    </color>
+    <color name="ui_common_level2_button_pressed_text_color">
+        @color/ui_common_inverse_content_fg_color
+    </color>
+    <color name="ui_common_level2_icon_bg_color">@color/ui_common_content_fg_color_alpha_28</color>
+    <color name="ui_common_level2_line_bg_color">@color/ui_common_content_fg_color_alpha_4</color>
+    <color name="ui_common_level2_white_text_color">
+        @color/ui_common_inverse_content_fg_color_alpha_56
+    </color>
+    <color name="ui_common_level3_button_bg_color">@color/ui_common_content_bg_color</color>
+    <color name="ui_common_level3_button_disabled_bg_color">
+        @color/ui_common_content_bg_color_alpha_40
+    </color>
+    <color name="ui_common_level3_button_disabled_text_color">
+        @color/ui_common_theme_bg_color_alpha_12
+    </color>
+    <color name="ui_common_level3_button_pressed_bg_color">
+        @color/ui_common_content_bg_color_dark_overlay_20
+    </color>
+    <color name="ui_common_level3_text_color">@color/ui_common_content_fg_color_alpha_40</color>
+    <color name="ui_common_level3_white_text_color">
+        @color/ui_common_inverse_content_fg_color_alpha_40
+    </color>
+    <color name="ui_common_level4_text_color">@color/ui_common_content_fg_color_alpha_28</color>
+    <color name="ui_common_link_bg_color">#ff576a95</color>
+    <color name="ui_common_link_bg_color_alpha_12">#1e576a95</color>
+    <color name="ui_common_link_bg_color_alpha_28">#47576a95</color>
+    <color name="ui_common_link_text_color">@color/ui_common_link_bg_color</color>
+    <color name="ui_common_link_text_disabled_color">@color/ui_common_link_bg_color_alpha_12</color>
+    <color name="ui_common_link_text_pressed_color">@color/ui_common_link_bg_color_alpha_28</color>
+    <color name="ui_common_orange_icon_bg_color">@color/ui_common_warming_bg_color</color>
+    <color name="ui_common_orange_icon_disabled_bg_color">
+        @color/ui_common_warming_bg_color_alpha_12
+    </color>
+    <color name="ui_common_orange_icon_pressed_bg_color">
+        @color/ui_common_warming_bg_color_alpha_28
+    </color>
+    <color name="ui_common_page_bg_color">@color/ui_common_window_bg_color</color>
+    <color name="ui_common_safe_bg_color">#ff15bc83</color>
+    <color name="ui_common_safe_bg_color_alpha_12">#1e15bc83</color>
+    <color name="ui_common_safe_bg_color_alpha_28">#4715bc83</color>
+    <color name="ui_common_search_bg_color">@color/ui_common_content_fg_color_alpha_8</color>
+    <color name="ui_common_search_pressed_bg_color">@color/ui_common_content_fg_color_alpha_12
+    </color>
+    <color name="ui_common_tab_bar_level2_inactive_bg_color">
+        @color/ui_common_content_fg_color_alpha_40
+    </color>
+    <color name="ui_common_text_disabled_color">@color/ui_common_content_fg_color_alpha_12</color>
+    <color name="ui_common_theme_bg_color_alpha_12">#1e3296fa</color>
+    <color name="ui_common_theme_bg_color_alpha_28">#473296fa</color>
+    <color name="ui_common_theme_bg_color_dark_overlay_10">#ff2d87e1</color>
+    <color name="ui_common_theme_icon_disabled_bg_color">@color/ui_common_theme_bg_color_alpha_12
+    </color>
+    <color name="ui_common_theme_icon_pressed_bg_color">@color/ui_common_theme_bg_color_alpha_28
+    </color>
+    <color name="ui_common_theme_text_disabled_color">@color/ui_common_theme_bg_color_alpha_12
+    </color>
+    <color name="ui_common_theme_text_pressed_color">@color/ui_common_theme_bg_color_alpha_28
+    </color>
+    <color name="ui_common_transparent_cell_bg_color">@android:color/transparent</color>
+    <color name="ui_common_transparent_cell_pressed_bg_color">@color/ui_common_dark_overlay_20
+    </color>
+    <color name="ui_common_transparent_cell_ripple_bg_color">@color/ui_common_dark_overlay_20
+    </color>
+    <color name="ui_common_uninput_text_color">@color/ui_common_content_fg_color_alpha_28</color>
+    <color name="ui_common_warming_bg_color">#ffff943e</color>
+    <color name="ui_common_warming_bg_color_alpha_12">#1eff943e</color>
+    <color name="ui_common_warming_bg_color_alpha_28">#47ff943e</color>
+    <color name="ui_common_warming_text_color">@color/ui_common_warming_bg_color</color>
+    <color name="ui_common_warming_text_disabled_color">@color/ui_common_warming_bg_color_alpha_12
+    </color>
+    <color name="ui_common_warming_text_pressed_color">@color/ui_common_warming_bg_color_alpha_28
+    </color>
+    <color name="ui_common_white_icon_bg_color">@color/ui_common_inverse_content_fg_color</color>
+    <color name="ui_common_white_icon_disabled_bg_color">
+        @color/ui_common_inverse_content_fg_color_alpha_12
+    </color>
+    <color name="ui_common_white_icon_pressed_bg_color">
+        @color/ui_common_inverse_content_fg_color_alpha_28
+    </color>
+    <color name="ui_common_white_text_disabled_color">
+        @color/ui_common_inverse_content_fg_color_alpha_12
+    </color>
+    <color name="ui_common_white_uninput_text_color">
+        @color/ui_common_inverse_content_fg_color_alpha_28
+    </color>
+    <color name="ui_common_window_bg_color">#f2f2f2</color>
+    <color name="half_transparent">#80000000</color>
 </resources>
