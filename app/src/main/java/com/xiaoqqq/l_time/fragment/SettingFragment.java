@@ -9,6 +9,7 @@ import com.tencent.bugly.beta.Beta;
 import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.base.BaseFragment;
 import com.xiaoqqq.l_time.utils.AppUtil;
+import com.xiaoqqq.l_time.utils.ToastUtils;
 
 public class SettingFragment extends BaseFragment implements View.OnClickListener {
 
@@ -48,7 +49,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 Beta.checkUpgrade(true, false);
                 break;
             case R.id.setting_about_me:
-                Toast.makeText(getActivity(), "关于我们", Toast.LENGTH_LONG).show();
+                ToastUtils.getInstance().customToast(getActivity(), "关于我们");
                 break;
             default:
                 break;

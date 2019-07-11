@@ -7,15 +7,17 @@ import android.view.View;
 import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.adapter.DaysAdapter;
 import com.xiaoqqq.l_time.base.BaseFragment;
-import com.xiaoqqq.l_time.bean.DaysBean;
+import com.xiaoqqq.l_time.bean.DateBean;
+import com.xiaoqqq.l_time.db.AppDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends BaseFragment {
 
     private RecyclerView mRecyclerView;
     private DaysAdapter mDaysAdapter;
-    private ArrayList<DaysBean> datas = new ArrayList<>();
+    private ArrayList<DateBean.DataContentBean> datas = new ArrayList<>();
 
     @Override
     protected int getFragmentLayoutId() {
@@ -30,13 +32,8 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
-        DaysBean daysbean = new DaysBean();
-        daysbean.setDate_name("恋爱纪念日");
-        daysbean.setAuthor("肖某");
-        daysbean.setDate_timestamp("2019-03-23");
-        daysbean.setDay_number("109");
-        datas.add(daysbean);
-        mDaysAdapter = new DaysAdapter(getActivity(), datas);
+        List<DateBean.DataContentBean> dataContentBeans = AppDatabase.getInstance().dateDao().queryAllDate();
+        mDaysAdapter = new DaysAdapter(getActivity(), (ArrayList<DateBean.DataContentBean>) dataContentBeans);
         mRecyclerView.setAdapter(mDaysAdapter);
         //设置布局管理器 , 将布局设置成纵向
         LinearLayoutManager linerLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);

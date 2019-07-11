@@ -19,9 +19,12 @@ import me.jessyan.autosize.unit.Subunits;
  */
 public class LtApp extends Application {
 
+    public static LtApp instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         MultiDex.install(getApplicationContext());
         AutoSizeConfig.getInstance()
                 .getUnitsManager()
@@ -29,6 +32,10 @@ public class LtApp extends Application {
                 .setSupportSP(true)
                 .setSupportSubunits(Subunits.MM);
         initSdk();
+    }
+
+    public static LtApp getInstance() {
+        return instance;
     }
 
     private void initSdk() {
