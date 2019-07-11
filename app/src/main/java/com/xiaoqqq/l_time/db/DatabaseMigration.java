@@ -18,11 +18,7 @@ public class DatabaseMigration {
     public static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL("delete from conversation");
-            database.execSQL("delete from chat_record");
-            database.execSQL("delete from msg_sync");
-            database.execSQL(
-                    "ALTER TABLE chat_record ADD COLUMN msg_seq INTEGER NOT NULL DEFAULT -1");
+            database.execSQL("CREATE TABLE IF NOT EXISTS `local_image` (`imagePath` TEXT  NOT NULL, `timeStamp` TEXT  NOT NULL, PRIMARY KEY(`imagePath`))");
         }
     };
 
@@ -45,8 +41,7 @@ public class DatabaseMigration {
     public static final Migration MIGRATION_4_5 = new Migration(4, 5) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL(
-                    "CREATE TABLE IF NOT EXISTS `template_user_info` (`appId` TEXT, `name` TEXT, `headUrl` TEXT, `uid` TEXT NOT NULL, `pluginId` TEXT, PRIMARY KEY(`uid`))");
+            database.execSQL("CREATE TABLE IF NOT EXISTS `template_user_info` (`appId` TEXT, `name` TEXT, `headUrl` TEXT, `uid` TEXT NOT NULL, `pluginId` TEXT, PRIMARY KEY(`uid`))");
         }
     };
     public static final Migration MIGRATION_5_6 = new Migration(5, 6) {
