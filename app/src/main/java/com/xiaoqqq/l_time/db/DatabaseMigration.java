@@ -25,8 +25,8 @@ public class DatabaseMigration {
     public static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL("delete from user_info");
-            database.execSQL("ALTER TABLE user_info ADD COLUMN inner_tel TEXT  DEFAULT \"\"");
+            database.execSQL("delete from date_content");
+            database.execSQL("ALTER TABLE date_content ADD COLUMN desktop_word TEXT  DEFAULT \"\"");
         }
     };
 

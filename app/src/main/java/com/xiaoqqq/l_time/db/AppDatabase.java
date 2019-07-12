@@ -17,7 +17,7 @@ import com.xiaoqqq.l_time.db.dao.LocalImageDao;
  * @describe todo
  */
 @Database(entities = {DateBean.DataContentBean.class,
-        LocalImageBean.class}, version = 2, exportSchema = false)
+        LocalImageBean.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract DateDao dateDao();
@@ -46,6 +46,7 @@ public abstract class AppDatabase extends RoomDatabase {
         try {
             appDataBase = Room.databaseBuilder(LtApp.getInstance(), AppDatabase.class, "ltime.db")
                     .addMigrations(DatabaseMigration.MIGRATION_1_2)
+                    .addMigrations(DatabaseMigration.MIGRATION_2_3)
                     .allowMainThreadQueries()
                     .build();
         } catch (Throwable e) {

@@ -1,5 +1,6 @@
 package com.xiaoqqq.l_time.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -11,9 +12,11 @@ import android.widget.TextView;
 
 import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.bean.DateBean;
+import com.xiaoqqq.l_time.utils.DateUtils;
 import com.xiaoqqq.l_time.utils.ToastUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.ViewHolder> {
 
@@ -35,11 +38,13 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.ViewHolder> {
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.dayName.setText(mDatas.get(position).getDate_name());
-        holder.dayDate.setText(mDatas.get(position).getDate_timestamp());
-        holder.dayNum.setText("110天");
+        holder.dayDate.setText(DateUtils.stampToDate(mDatas.get(position).getDate_timestamp()));
+        int days = DateUtils.getDaysByMillions(DateUtils.dateToStamp(DateUtils.stampToDate(mDatas.get(position).getDate_timestamp())), System.currentTimeMillis());
+        holder.dayNum.setText(days + "天");
         holder.mCardView.setOnClickListener(v -> {
             ToastUtils.getInstance().customToast(mContext, "再按一次退出");
         });

@@ -45,6 +45,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     private TextView mTvSetJinianri;
 
     private boolean mIsRecycleViewDisplay = true;
+    private List<DateBean.DataContentBean> mdatas = new ArrayList<>();
 
     @Override
     protected int getFragmentLayoutId() {
@@ -69,12 +70,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     public void initData() {
         super.initData();
         switchDesktopDisplay(mIsRecycleViewDisplay);
-        List<DateBean.DataContentBean> dataContentBeans = AppDatabase.getInstance().dateDao().queryAllDate();
-        mDaysAdapter = new DaysAdapter(getActivity(), (ArrayList<DateBean.DataContentBean>) dataContentBeans);
+        mdatas = AppDatabase.getInstance().dateDao().queryAllDate();
+        mDaysAdapter = new DaysAdapter(getActivity(), (ArrayList<DateBean.DataContentBean>) mdatas);
         mRecyclerView.setAdapter(mDaysAdapter);
         //设置布局管理器 , 将布局设置成纵向
         LinearLayoutManager linerLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linerLayoutManager);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkHaveJinianri();
     }
 
     private void switchDesktopDisplay(boolean isRecycleViewDisplay) {
@@ -101,6 +108,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
             mRecyclerView.setVisibility(View.VISIBLE);
             mBackground.setVisibility(View.GONE);
             mNoJinianri.setVisibility(View.GONE);
+            mdatas.clear();
+            mdatas.addAll(dataContentBeans);
+            if (null != mDaysAdapter)
+                mDaysAdapter.notifyDataSetChanged();
         }
     }
 
@@ -140,7 +151,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.fab_add:
-                ToastUtils.getInstance().customToast(getActivity(), "新增");
+                ARouter.getInstance().build(RouterPath.addDateActivity).navigation();
                 break;
             case R.id.fab_delete:
                 ToastUtils.getInstance().customToast(getActivity(), "删除");

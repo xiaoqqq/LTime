@@ -107,4 +107,7 @@ dependencies {
     /**============================= ARouter =============================**/
     implementation 'com.alibaba:arouter-api:1.4.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
+    /**============================= datepicker =============================**/
+    implementation 'cn.aigestudio.datepicker:DatePicker:2.2.0'
 }
