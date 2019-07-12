@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.Environment;
 import android.support.multidex.MultiDex;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.xiaoqqq.l_time.activity.MainActivity;
@@ -26,6 +27,9 @@ public class LtApp extends Application {
         super.onCreate();
         instance = this;
         MultiDex.install(getApplicationContext());
+        ARouter.openLog();
+        ARouter.openDebug();
+        ARouter.init(this);
         AutoSizeConfig.getInstance()
                 .getUnitsManager()
                 .setSupportDP(true)

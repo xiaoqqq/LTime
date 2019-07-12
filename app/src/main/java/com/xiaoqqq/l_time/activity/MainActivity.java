@@ -12,10 +12,12 @@ import android.support.v4.view.ViewPager;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.base.BaseActivity;
 import com.xiaoqqq.l_time.base.BaseFragment;
+import com.xiaoqqq.l_time.constants.RouterPath;
 import com.xiaoqqq.l_time.fragment.HomeFragment;
 import com.xiaoqqq.l_time.fragment.SettingFragment;
 import com.yy.mobile.rollingtextview.RollingTextView;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 /**
  * @author xiaoqqq
  */
+@Route(path = RouterPath.mainActivity)
 public class MainActivity extends BaseActivity {
 
     private RollingTextView mRollingDays;

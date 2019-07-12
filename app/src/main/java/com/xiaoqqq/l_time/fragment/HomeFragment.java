@@ -14,12 +14,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.adapter.DaysAdapter;
 import com.xiaoqqq.l_time.base.BaseFragment;
 import com.xiaoqqq.l_time.bean.DateBean;
 import com.xiaoqqq.l_time.bean.LocalImageBean;
+import com.xiaoqqq.l_time.constants.RouterPath;
 import com.xiaoqqq.l_time.db.AppDatabase;
 import com.xiaoqqq.l_time.utils.ToastUtils;
 
@@ -151,7 +153,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 selectLocalImage2backgroundImage();
                 break;
             case R.id.home_tv_set_jinianri:
-                ToastUtils.getInstance().customToast(getActivity(), "设置纪念日");
+                ARouter.getInstance().build(RouterPath.addDateActivity).navigation();
                 break;
         }
     }

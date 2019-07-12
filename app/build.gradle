@@ -8,6 +8,12 @@ android {
         targetSdkVersion 27
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -97,4 +103,8 @@ dependencies {
 
     /**============================= floatingactionbutton =============================**/
     implementation 'com.getbase:floatingactionbutton:1.10.1'
+
+    /**============================= ARouter =============================**/
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }
