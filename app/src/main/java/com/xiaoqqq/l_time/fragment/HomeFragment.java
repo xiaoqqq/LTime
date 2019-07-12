@@ -37,8 +37,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     private FloatingActionButton mDelete;
     private FloatingActionButton mBackgroudSetting;
     private RelativeLayout mBackground;
+    private RelativeLayout mNoJinianri;
     private ImageView mHomeBackgroundImage;
     private TextView mTips;
+    private TextView mTvSetJinianri;
 
     private boolean mIsRecycleViewDisplay = true;
 
@@ -51,11 +53,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     protected void initView(View rootView) {
         mRecyclerView = rootView.findViewById(R.id.home_days_recycle_view);
         mBackground = rootView.findViewById(R.id.rl_background);
+        mNoJinianri = rootView.findViewById(R.id.rl_no_jinianri);
         mAdd = rootView.findViewById(R.id.fab_add);
         mDelete = rootView.findViewById(R.id.fab_delete);
         mBackgroudSetting = rootView.findViewById(R.id.fab_background_setting);
         mHomeBackgroundImage = rootView.findViewById(R.id.home_iv_custom_image_bg);
         mTips = rootView.findViewById(R.id.home_tv_tips);
+        mTvSetJinianri = rootView.findViewById(R.id.home_tv_set_jinianri);
+
     }
 
     @Override
@@ -72,15 +77,34 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 
     private void switchDesktopDisplay(boolean isRecycleViewDisplay) {
         if (isRecycleViewDisplay) {
-            mRecyclerView.setVisibility(View.VISIBLE);
-            mBackground.setVisibility(View.GONE);
+            checkHaveJinianri();
         } else {
             mRecyclerView.setVisibility(View.GONE);
+            mNoJinianri.setVisibility(View.GONE);
             mBackground.setVisibility(View.VISIBLE);
             checkLocalImage();
         }
     }
 
+    /**
+     * 检查本地是否保存过纪念日
+     */
+    private void checkHaveJinianri() {
+        List<DateBean.DataContentBean> dataContentBeans = AppDatabase.getInstance().dateDao().queryAllDate();
+        if (null == dataContentBeans || dataContentBeans.size() == 0) { // 没有设置过纪念日
+            mRecyclerView.setVisibility(View.GONE);
+            mBackground.setVisibility(View.GONE);
+            mNoJinianri.setVisibility(View.VISIBLE);
+        } else { // 本地已经设置过纪念日
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mBackground.setVisibility(View.GONE);
+            mNoJinianri.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 检查本地是否保存过背景图
+     */
     private void checkLocalImage() {
         LocalImageBean localImageBean = AppDatabase.getInstance().localImageDao().queryLocalImage();
         if (null == localImageBean) { // 没有设置过背景图
@@ -100,6 +124,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         mDelete.setOnClickListener(this);
         mBackgroudSetting.setOnClickListener(this);
         mTips.setOnClickListener(this);
+        mTvSetJinianri.setOnClickListener(this);
 
         mHomeBackgroundImage.setOnLongClickListener(this);
     }
@@ -124,6 +149,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 break;
             case R.id.home_tv_tips:
                 selectLocalImage2backgroundImage();
+                break;
+            case R.id.home_tv_set_jinianri:
+                ToastUtils.getInstance().customToast(getActivity(), "设置纪念日");
                 break;
         }
     }
