@@ -103,6 +103,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         LinearLayoutManager linerLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linerLayoutManager);
 
+        checkBackgroundText();
+    }
+
+    /**
+     * 检查本地数据库 背景文案
+     */
+    private void checkBackgroundText() {
         DateBean.DataContentBean dataContentBean = AppDatabase.getInstance().dateDao().queryDesktopWord();
         if (null != dataContentBean) {
             String startTime = DateUtils.stampToDate(dataContentBean.getDate_timestamp());
@@ -194,9 +201,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
             mHomeBackgroundImage.setVisibility(View.GONE);
         } else {
             mTips.setVisibility(View.GONE);
-            mTvBackgroundText.setVisibility(View.VISIBLE);
+            if (mRecyclerView.getVisibility() == View.VISIBLE) {
+                mTvBackgroundText.setVisibility(View.GONE);
+            } else {
+                mTvBackgroundText.setVisibility(View.VISIBLE);
+            }
             mHomeBackgroundImage.setVisibility(View.VISIBLE);
             showImage(localImageBean.getImagePath());
+            checkBackgroundText();
         }
     }
 
@@ -221,6 +233,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                         case R.id.tv_delete_card_view:
                             AppDatabase.getInstance().dateDao().deleteDateByDateName(mdatas.get(position).getDate_name());
                             checkHaveJinianri();
+                            checkLocalImage();
                             break;
                         case R.id.tv_edit:
                             ARouter.getInstance()
