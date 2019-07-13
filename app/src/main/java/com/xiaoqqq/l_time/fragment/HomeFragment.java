@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,10 +24,12 @@ import com.xiaoqqq.l_time.bean.DateBean;
 import com.xiaoqqq.l_time.bean.LocalImageBean;
 import com.xiaoqqq.l_time.constants.RouterPath;
 import com.xiaoqqq.l_time.db.AppDatabase;
+import com.xiaoqqq.l_time.utils.PopupWindowUtils;
 import com.xiaoqqq.l_time.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HomeFragment extends BaseFragment implements View.OnClickListener, View.OnLongClickListener {
 
@@ -140,6 +143,25 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         mTvSetJinianri.setOnClickListener(this);
 
         mHomeBackgroundImage.setOnLongClickListener(this);
+
+        mDaysAdapter.setOnCardViewLongClickListener(new DaysAdapter.onCardViewLongClickListener() {
+            @Override
+            public void onCardViewLongClicked(int position) {
+                PopupWindowUtils.getInstance().showPopupWindow(Objects.requireNonNull(getActivity()),
+                        R.layout.recycleview_item, R.id.item_card_view);
+                PopupWindowUtils.getInstance().setOnPopwindowItemClickListener(view -> {
+                    switch (view.getId()) {
+                        case R.id.tv_delete_card_view:
+                            AppDatabase.getInstance().dateDao().deleteDateByDateName(mdatas.get(position).getDate_name());
+                            checkHaveJinianri();
+                            break;
+                        case R.id.tv_transfer_other:
+                            ToastUtils.getInstance().customToast(getActivity(), "开发中，敬请期待!");
+                            break;
+                    }
+                });
+            }
+        });
     }
 
     /**

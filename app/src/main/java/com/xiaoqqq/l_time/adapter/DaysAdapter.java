@@ -45,8 +45,12 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.ViewHolder> {
         holder.dayDate.setText(DateUtils.stampToDate(mDatas.get(position).getDate_timestamp()));
         int days = DateUtils.getDaysByMillions(DateUtils.dateToStamp(DateUtils.stampToDate(mDatas.get(position).getDate_timestamp())), System.currentTimeMillis());
         holder.dayNum.setText(days + "天");
-        holder.mCardView.setOnClickListener(v -> {
-            ToastUtils.getInstance().customToast(mContext, "再按一次退出");
+        holder.mCardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mOnCardViewLongClickListener.onCardViewLongClicked(position);
+                return false;
+            }
         });
     }
 
@@ -70,5 +74,15 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.ViewHolder> {
             dayNum = itemView.findViewById(R.id.item_tv_day_number);
             mCardView = itemView.findViewById(R.id.item_card_view);
         }
+    }
+
+    private onCardViewLongClickListener mOnCardViewLongClickListener;
+
+    public void setOnCardViewLongClickListener(onCardViewLongClickListener onCardViewLongClickListener) {
+        mOnCardViewLongClickListener = onCardViewLongClickListener;
+    }
+
+    public interface onCardViewLongClickListener {
+        void onCardViewLongClicked(int position);
     }
 }
