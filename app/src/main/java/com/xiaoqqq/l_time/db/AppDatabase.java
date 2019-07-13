@@ -6,8 +6,10 @@ import android.arch.persistence.room.RoomDatabase;
 
 import com.xiaoqqq.l_time.LtApp;
 import com.xiaoqqq.l_time.bean.DateBean;
+import com.xiaoqqq.l_time.bean.DestopBean;
 import com.xiaoqqq.l_time.bean.LocalImageBean;
 import com.xiaoqqq.l_time.db.dao.DateDao;
+import com.xiaoqqq.l_time.db.dao.DesktopShowDao;
 import com.xiaoqqq.l_time.db.dao.LocalImageDao;
 
 /**
@@ -17,12 +19,14 @@ import com.xiaoqqq.l_time.db.dao.LocalImageDao;
  * @describe todo
  */
 @Database(entities = {DateBean.DataContentBean.class,
-        LocalImageBean.class}, version = 3, exportSchema = false)
+        LocalImageBean.class, DestopBean.class}, version = 5, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract DateDao dateDao();
 
     public abstract LocalImageDao localImageDao();
+
+    public abstract DesktopShowDao desktopShowDao();
 
 
     private static AppDatabase appDataBase;
@@ -47,6 +51,8 @@ public abstract class AppDatabase extends RoomDatabase {
             appDataBase = Room.databaseBuilder(LtApp.getInstance(), AppDatabase.class, "ltime.db")
                     .addMigrations(DatabaseMigration.MIGRATION_1_2)
                     .addMigrations(DatabaseMigration.MIGRATION_2_3)
+                    .addMigrations(DatabaseMigration.MIGRATION_3_4)
+                    .addMigrations(DatabaseMigration.MIGRATION_4_5)
                     .allowMainThreadQueries()
                     .build();
         } catch (Throwable e) {

@@ -1,6 +1,7 @@
 package com.xiaoqqq.l_time.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
@@ -31,6 +32,8 @@ public class AddDateActivity extends BaseActivity implements View.OnClickListene
     private TextView mSelectDate;
     private TextView mDateName;
     private TextView mDesktopWord;
+    private TextView mTitle;
+    private String mDate_name;
 
     @Override
     protected int getLayoutId() {
@@ -39,6 +42,7 @@ public class AddDateActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initView() {
+        mTitle = findViewById(R.id.tv_title);
         mSave = findViewById(R.id.tv_save);
         mDateName = findViewById(R.id.tv_date_name);
         mDesktopWord = findViewById(R.id.tv_desktop_words);
@@ -49,6 +53,21 @@ public class AddDateActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void initData() {
         super.initData();
+        Intent intent = getIntent();
+        mDate_name = intent.getStringExtra("DATA_POSITION");
+        if (!TextUtils.isEmpty(mDate_name)) {
+            mTitle.setText("编辑纪念日");
+            DateBean.DataContentBean dataContentBean = AppDatabase.getInstance().dateDao().queryDateByDateName(mDate_name);
+            mDateName.setText(dataContentBean.getDate_name());
+            mSelectDate.setText(DateUtils.stampToDate(dataContentBean.getDate_timestamp()));
+            mDesktopWord.setText(dataContentBean.getDesktop_word());
+
+        } else {
+            mTitle.setText("添加纪念日");
+            mDateName.setText("");
+            mSelectDate.setText("请选择日期");
+            mDesktopWord.setText("");
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -91,15 +110,20 @@ public class AddDateActivity extends BaseActivity implements View.OnClickListene
             ToastUtils.getInstance().customToast(this, "日期不能为空");
             return;
         }
-        /*if (TextUtils.isEmpty(dateWords)) {
-            ToastUtils.getInstance().customToast(this, "背景文案不能为空");
-            return;
-        }*/
-        DateBean.DataContentBean bean = new DateBean.DataContentBean();
-        bean.setDate_name(dateName);
-        bean.setDate_timestamp(DateUtils.getDateMillions(date));
-        bean.setDesktop_word(desktopWord);
-        AppDatabase.getInstance().dateDao().saveDate(bean);
+        if (!TextUtils.isEmpty(mDate_name)) {
+            DateBean.DataContentBean dataContentBean = AppDatabase.getInstance().dateDao().queryDateByDateName(mDate_name);
+            mDateName.setText(dataContentBean.getDate_name());
+            mSelectDate.setText(date);
+            mDesktopWord.setText(dataContentBean.getDesktop_word());
+            AppDatabase.getInstance().dateDao().updateDateByDatename(dataContentBean.getDate_name(), mDateName.getText().toString().trim()
+                    , DateUtils.dateToStamp(mSelectDate.getText().toString()) + "", System.currentTimeMillis() + "", mDesktopWord.getText().toString().trim());
+        } else {
+            DateBean.DataContentBean bean = new DateBean.DataContentBean();
+            bean.setDate_name(dateName);
+            bean.setDate_timestamp(DateUtils.getDateMillions(date));
+            bean.setDesktop_word(desktopWord);
+            AppDatabase.getInstance().dateDao().saveDate(bean);
+        }
 
         finish();
     }

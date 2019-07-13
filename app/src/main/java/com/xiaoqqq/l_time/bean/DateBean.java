@@ -38,6 +38,7 @@ public class DateBean {
         private String author;
         private String desktop_word;
         private int show_desktop;
+        private String update_timestamp;
 
         public String getDate_name() {
             return date_name;
@@ -77,6 +78,14 @@ public class DateBean {
 
         public void setDesktop_word(final String desktop_word) {
             this.desktop_word = desktop_word;
+        }
+
+        public String getUpdate_timestamp() {
+            return update_timestamp;
+        }
+
+        public void setUpdate_timestamp(String update_timestamp) {
+            this.update_timestamp = update_timestamp;
         }
     }
 }

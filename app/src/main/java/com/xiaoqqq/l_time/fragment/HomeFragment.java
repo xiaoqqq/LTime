@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +20,7 @@ import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.adapter.DaysAdapter;
 import com.xiaoqqq.l_time.base.BaseFragment;
 import com.xiaoqqq.l_time.bean.DateBean;
+import com.xiaoqqq.l_time.bean.DestopBean;
 import com.xiaoqqq.l_time.bean.LocalImageBean;
 import com.xiaoqqq.l_time.constants.RouterPath;
 import com.xiaoqqq.l_time.db.AppDatabase;
@@ -84,17 +84,29 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     @Override
     public void onResume() {
         super.onResume();
-        checkHaveJinianri();
+        DestopBean destopBean = AppDatabase.getInstance().desktopShowDao().queryDesktop();
+        if (destopBean == null || destopBean.getShow_desktop() == 0) {
+            checkHaveJinianri();
+        }
     }
 
     private void switchDesktopDisplay(boolean isRecycleViewDisplay) {
-        if (isRecycleViewDisplay) {
+        DestopBean destopBean = AppDatabase.getInstance().desktopShowDao().queryDesktop();
+        if (destopBean == null) {
             checkHaveJinianri();
         } else {
-            mRecyclerView.setVisibility(View.GONE);
-            mNoJinianri.setVisibility(View.GONE);
-            mBackground.setVisibility(View.VISIBLE);
-            checkLocalImage();
+            int show_desktop = destopBean.getShow_desktop();
+            switch (show_desktop) {
+                case 0:
+                    checkHaveJinianri();
+                    break;
+                case 1:
+                    mRecyclerView.setVisibility(View.GONE);
+                    mNoJinianri.setVisibility(View.GONE);
+                    mBackground.setVisibility(View.VISIBLE);
+                    checkLocalImage();
+                    break;
+            }
         }
     }
 
@@ -155,8 +167,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                             AppDatabase.getInstance().dateDao().deleteDateByDateName(mdatas.get(position).getDate_name());
                             checkHaveJinianri();
                             break;
+                        case R.id.tv_edit:
+                            ARouter.getInstance()
+                                    .build(RouterPath.addDateActivity)
+                                    .withString("DATA_POSITION", mdatas.get(position).getDate_name())
+                                    .navigation();
+                            break;
                         case R.id.tv_transfer_other:
-                            ToastUtils.getInstance().customToast(getActivity(), "开发中，敬请期待!");
+                            DateBean.DataContentBean dataContentBean = mdatas.get(position);
+                            String date_name = dataContentBean.getDate_name();
+                            String date_timestamp = dataContentBean.getDate_timestamp();
+                            String desktop_word = dataContentBean.getDesktop_word();
+                            String update_timestamp = System.currentTimeMillis() + "";
+                            AppDatabase.getInstance().dateDao().updateDateByDatename(date_name, date_name, date_timestamp, update_timestamp, desktop_word);
                             break;
                     }
                 });
@@ -180,6 +203,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 break;
             case R.id.fab_background_setting:
                 mIsRecycleViewDisplay = !mIsRecycleViewDisplay;
+                DestopBean bean = new DestopBean();
+                if (mIsRecycleViewDisplay) {
+                    bean.setShow_desktop(0);
+                } else {
+                    bean.setShow_desktop(1);
+                }
+                AppDatabase.getInstance().desktopShowDao().saveDesktop(bean);
                 switchDesktopDisplay(mIsRecycleViewDisplay);
                 break;
             case R.id.home_tv_tips:

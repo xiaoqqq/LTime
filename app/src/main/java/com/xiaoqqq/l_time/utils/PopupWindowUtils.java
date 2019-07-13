@@ -50,6 +50,14 @@ public class PopupWindowUtils {
             }
         });
 
+        vPopupWindow.findViewById(R.id.tv_edit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnPopwindowItemClickListener.onPopItemClicked(view);
+                popupWindow.dismiss();
+            }
+        });
+
         vPopupWindow.findViewById(R.id.tv_transfer_other).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

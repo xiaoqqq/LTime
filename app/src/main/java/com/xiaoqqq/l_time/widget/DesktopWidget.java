@@ -5,9 +5,12 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.xiaoqqq.l_time.R;
+import com.xiaoqqq.l_time.bean.DateBean;
+import com.xiaoqqq.l_time.db.AppDatabase;
 import com.xiaoqqq.l_time.utils.DateUtils;
 
 import java.text.DateFormat;
@@ -22,17 +25,24 @@ public class DesktopWidget extends AppWidgetProvider {
 
     void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-        String startTime = "2019-03-23";
-        DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date startDate = simpleDateFormat.parse(startTime);
-            Date currentDate = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
-            String widgetString = "恋爱第 " + DateUtils.getDaysByDate(startDate, currentDate) + " 天";
-            views.setTextViewText(R.id.appwidget_text, widgetString);
-            // Instruct the widget manager to update the widget
-            appWidgetManager.updateAppWidget(appWidgetId, views);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        DateBean.DataContentBean dataContentBean = AppDatabase.getInstance().dateDao().queryDesktopWord();
+        if (null != dataContentBean) {
+            String startTime = DateUtils.stampToDate(dataContentBean.getDate_timestamp());
+            DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date startDate = simpleDateFormat.parse(startTime);
+                Date currentDate = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
+                String desktopWord = dataContentBean.getDesktop_word();
+//                int days = DateUtils.getDaysByMillions(Long.valueOf(DateUtils.getDateMillions(startTime)), System.currentTimeMillis());
+//                String widgetString = desktopWord + days + " 天";
+                String widgetString = desktopWord + " " + +DateUtils.getDaysByDate(startDate, currentDate) + " 天";
+                views.setTextViewText(R.id.appwidget_text, widgetString);
+                // Instruct the widget manager to update the widget
+                appWidgetManager.updateAppWidget(appWidgetId, views);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                Log.e("xiaoqqq", e.getMessage());
+            }
         }
     }
 

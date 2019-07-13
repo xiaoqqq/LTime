@@ -7,11 +7,25 @@
               android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_delete_card_view"
+        android:id="@+id/tv_transfer_other"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="删除"
+        android:text="桌面显示该文案"
+        android:textSize="17sp"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#ffeeeeee"/>
+
+    <TextView
+        android:id="@+id/tv_edit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="编辑"
         android:textSize="17sp"/>
 
     <View
@@ -20,11 +34,11 @@
         android:background="#ffeeeeee"/>
 
     <TextView
-        android:id="@+id/tv_transfer_other"
+        android:id="@+id/tv_delete_card_view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="转发"
+        android:text="删除"
         android:textSize="17sp"/>
 
     <View

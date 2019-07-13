@@ -33,15 +33,14 @@ public class DatabaseMigration {
     public static final Migration MIGRATION_3_4 = new Migration(3, 4) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL("delete from group_info");
-            database.execSQL("delete from group_user");
-            database.execSQL("ALTER TABLE group_user ADD COLUMN email TEXT  DEFAULT \"\"");
+            database.execSQL("CREATE TABLE IF NOT EXISTS `desktop_show` (`show_desktop` INT  NOT NULL,  PRIMARY KEY(`show_desktop`))");
         }
     };
     public static final Migration MIGRATION_4_5 = new Migration(4, 5) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL("CREATE TABLE IF NOT EXISTS `template_user_info` (`appId` TEXT, `name` TEXT, `headUrl` TEXT, `uid` TEXT NOT NULL, `pluginId` TEXT, PRIMARY KEY(`uid`))");
+            database.execSQL("delete from date_content");
+            database.execSQL("ALTER TABLE date_content ADD COLUMN update_timestamp TEXT  DEFAULT \"\"");
         }
     };
     public static final Migration MIGRATION_5_6 = new Migration(5, 6) {
