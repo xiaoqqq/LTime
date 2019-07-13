@@ -8,15 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.bean.DateBean;
 import com.xiaoqqq.l_time.utils.DateUtils;
-import com.xiaoqqq.l_time.utils.ToastUtils;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.ViewHolder> {
 
@@ -48,7 +47,7 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.ViewHolder> {
         holder.mCardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                mOnCardViewLongClickListener.onCardViewLongClicked(position);
+                mOnCardViewLongClickListener.onCardViewLongClicked(holder,position);
                 return false;
             }
         });
@@ -65,6 +64,8 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.ViewHolder> {
         TextView dayDate;
         TextView dayNum;
 
+        ImageView itemSelected;
+
         CardView mCardView;
 
         public ViewHolder(View itemView) {
@@ -73,6 +74,7 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.ViewHolder> {
             dayDate = itemView.findViewById(R.id.item_tv_day_date);
             dayNum = itemView.findViewById(R.id.item_tv_day_number);
             mCardView = itemView.findViewById(R.id.item_card_view);
+            itemSelected = itemView.findViewById(R.id.item_iv_selected);
         }
     }
 
@@ -83,6 +85,6 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.ViewHolder> {
     }
 
     public interface onCardViewLongClickListener {
-        void onCardViewLongClicked(int position);
+        void onCardViewLongClicked(ViewHolder holder, int position);
     }
 }

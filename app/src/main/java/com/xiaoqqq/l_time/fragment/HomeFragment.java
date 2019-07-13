@@ -1,5 +1,7 @@
 package com.xiaoqqq.l_time.fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,8 +11,11 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,10 +29,19 @@ import com.xiaoqqq.l_time.bean.DestopBean;
 import com.xiaoqqq.l_time.bean.LocalImageBean;
 import com.xiaoqqq.l_time.constants.RouterPath;
 import com.xiaoqqq.l_time.db.AppDatabase;
+import com.xiaoqqq.l_time.utils.DateUtils;
 import com.xiaoqqq.l_time.utils.PopupWindowUtils;
 import com.xiaoqqq.l_time.utils.ToastUtils;
+import com.yy.mobile.rollingtextview.CharOrder;
+import com.yy.mobile.rollingtextview.RollingTextView;
+import com.yy.mobile.rollingtextview.strategy.Direction;
+import com.yy.mobile.rollingtextview.strategy.Strategy;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,8 +61,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     private TextView mTips;
     private TextView mTvSetJinianri;
 
+    private RollingTextView mRollingDays;
+    private TextView mTvPreDays;
+    private TextView mTvDanwei;
+
     private boolean mIsRecycleViewDisplay = true;
     private List<DateBean.DataContentBean> mdatas = new ArrayList<>();
+    private LinearLayout mTvBackgroundText;
 
     @Override
     protected int getFragmentLayoutId() {
@@ -66,6 +85,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         mHomeBackgroundImage = rootView.findViewById(R.id.home_iv_custom_image_bg);
         mTips = rootView.findViewById(R.id.home_tv_tips);
         mTvSetJinianri = rootView.findViewById(R.id.home_tv_set_jinianri);
+        mTvBackgroundText = rootView.findViewById(R.id.tv_background_text);
+        mTvPreDays = rootView.findViewById(R.id.tv_pre_day);
+        mTvDanwei = rootView.findViewById(R.id.tv_danwei);
+        mRollingDays = rootView.findViewById(R.id.tv_days);
 
     }
 
@@ -79,6 +102,34 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         //设置布局管理器 , 将布局设置成纵向
         LinearLayoutManager linerLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linerLayoutManager);
+
+        DateBean.DataContentBean dataContentBean = AppDatabase.getInstance().dateDao().queryDesktopWord();
+        if (null != dataContentBean) {
+            String startTime = DateUtils.stampToDate(dataContentBean.getDate_timestamp());
+            DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date startDate = simpleDateFormat.parse(startTime);
+                Date currentDate = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
+                String desktopWord = dataContentBean.getDesktop_word();
+                mTvPreDays.setText(desktopWord);
+                mRollingDays.setText("0");
+                mTvDanwei.setText("天");
+                mRollingDays.setAnimationDuration(2000L);
+                mRollingDays.setCharStrategy(Strategy.SameDirectionAnimation(Direction.SCROLL_UP));
+                mRollingDays.addCharOrder(CharOrder.Number);
+                mRollingDays.setAnimationInterpolator(new AccelerateDecelerateInterpolator());
+                mRollingDays.addAnimatorListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        //finsih
+                    }
+                });
+                mRollingDays.setText(DateUtils.getDaysByDate(startDate, currentDate) + "");
+            } catch (ParseException e) {
+                e.printStackTrace();
+                Log.e("xiaoqqq", e.getMessage());
+            }
+        }
     }
 
     @Override
@@ -118,10 +169,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         if (null == dataContentBeans || dataContentBeans.size() == 0) { // 没有设置过纪念日
             mRecyclerView.setVisibility(View.GONE);
             mBackground.setVisibility(View.GONE);
+            mTvBackgroundText.setVisibility(View.GONE);
             mNoJinianri.setVisibility(View.VISIBLE);
         } else { // 本地已经设置过纪念日
             mRecyclerView.setVisibility(View.VISIBLE);
             mBackground.setVisibility(View.GONE);
+            mTvBackgroundText.setVisibility(View.GONE);
             mNoJinianri.setVisibility(View.GONE);
             mdatas.clear();
             mdatas.addAll(dataContentBeans);
@@ -137,9 +190,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         LocalImageBean localImageBean = AppDatabase.getInstance().localImageDao().queryLocalImage();
         if (null == localImageBean) { // 没有设置过背景图
             mTips.setVisibility(View.VISIBLE);
+            mTvBackgroundText.setVisibility(View.GONE);
             mHomeBackgroundImage.setVisibility(View.GONE);
         } else {
             mTips.setVisibility(View.GONE);
+            mTvBackgroundText.setVisibility(View.VISIBLE);
             mHomeBackgroundImage.setVisibility(View.VISIBLE);
             showImage(localImageBean.getImagePath());
         }
@@ -158,7 +213,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 
         mDaysAdapter.setOnCardViewLongClickListener(new DaysAdapter.onCardViewLongClickListener() {
             @Override
-            public void onCardViewLongClicked(int position) {
+            public void onCardViewLongClicked(DaysAdapter.ViewHolder holder, int position) {
                 PopupWindowUtils.getInstance().showPopupWindow(Objects.requireNonNull(getActivity()),
                         R.layout.recycleview_item, R.id.item_card_view);
                 PopupWindowUtils.getInstance().setOnPopwindowItemClickListener(view -> {

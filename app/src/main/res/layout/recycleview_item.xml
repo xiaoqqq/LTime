@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tessss"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tessss"
                 android:fitsSystemWindows="true">
 
 
@@ -95,5 +95,15 @@
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
+
+    <ImageView
+        android:id="@+id/item_iv_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_toStartOf="@id/item_card_view"
+        android:src="@drawable/ic_svg_selected"
+        android:visibility="gone"/>
 
 </RelativeLayout>
