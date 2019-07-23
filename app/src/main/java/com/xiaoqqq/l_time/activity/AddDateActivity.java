@@ -21,7 +21,7 @@ import com.xiaoqqq.l_time.utils.ToastUtils;
 /**
  * @author xiaoqqq
  * @package com.xiaoqqq.l_time.activity
- * @date 2019-07-12
+ * @date gift-07-12
  * @describe 添加纪念日 activity
  */
 @Route(path = RouterPath.addDateActivity)
@@ -114,7 +114,7 @@ public class AddDateActivity extends BaseActivity implements View.OnClickListene
             DateBean.DataContentBean dataContentBean = AppDatabase.getInstance().dateDao().queryDateByDateName(mDate_name);
             mDateName.setText(dataContentBean.getDate_name());
             mSelectDate.setText(date);
-            mDesktopWord.setText(dataContentBean.getDesktop_word());
+            mDesktopWord.setText(desktopWord);
             AppDatabase.getInstance().dateDao().updateDateByDatename(dataContentBean.getDate_name(), mDateName.getText().toString().trim()
                     , DateUtils.dateToStamp(mSelectDate.getText().toString()) + "", System.currentTimeMillis() + "", mDesktopWord.getText().toString().trim());
         } else {

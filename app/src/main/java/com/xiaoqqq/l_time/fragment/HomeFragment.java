@@ -277,6 +277,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
                 } else {
                     bean.setShow_desktop(1);
                 }
+                AppDatabase.getInstance().desktopShowDao().deleteAll();
                 AppDatabase.getInstance().desktopShowDao().saveDesktop(bean);
                 switchDesktopDisplay(mIsRecycleViewDisplay);
                 break;
@@ -336,6 +337,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
             Bitmap bm = BitmapFactory.decodeFile(imaePath);
             mHomeBackgroundImage.setImageBitmap(bm);
         } catch (Exception exception) {
+            Log.e("xiaoqqq", exception.getMessage());
             mHomeBackgroundImage.setVisibility(View.GONE);
             mTips.setVisibility(View.VISIBLE);
         }

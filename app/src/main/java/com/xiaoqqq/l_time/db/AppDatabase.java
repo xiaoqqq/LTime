@@ -15,7 +15,7 @@ import com.xiaoqqq.l_time.db.dao.LocalImageDao;
 /**
  * @author xiaoqqq
  * @package com.xiaoqqq.l_time.db
- * @date 2019-07-11
+ * @date gift-07-11
  * @describe todo
  */
 @Database(entities = {DateBean.DataContentBean.class,

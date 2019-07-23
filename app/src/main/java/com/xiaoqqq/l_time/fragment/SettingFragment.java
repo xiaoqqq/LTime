@@ -3,8 +3,8 @@ package com.xiaoqqq.l_time.fragment;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.tencent.bugly.beta.Beta;
 import com.xiaoqqq.l_time.R;
 import com.xiaoqqq.l_time.base.BaseFragment;
@@ -16,6 +16,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private ConstraintLayout mCheckUpdate;
     private ConstraintLayout mAboutMe;
     private TextView mVersion;
+    private LottieAnimationView mLottieView;
 
     @Override
     protected int getFragmentLayoutId() {

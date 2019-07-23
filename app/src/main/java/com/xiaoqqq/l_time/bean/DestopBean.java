@@ -10,7 +10,7 @@ public class DestopBean {
     // 0: show home  1: show destop background image
     @PrimaryKey
     @NonNull
-    private int show_desktop;
+    private int show_desktop = -1;
 
     public int getShow_desktop() {
         return show_desktop;

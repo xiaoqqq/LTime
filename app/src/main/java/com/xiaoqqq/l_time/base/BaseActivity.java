@@ -12,7 +12,7 @@ import com.xiaoqqq.l_time.utils.StatusBarUtil;
 /**
  * @author xiaoqqq
  * @package com.xiaoqqq.l_time.base
- * @date 2019-07-10
+ * @date gift-07-10
  * @describe todo
  */
 public abstract class BaseActivity extends AppCompatActivity {

@@ -18,7 +18,10 @@ import com.xiaoqqq.l_time.bean.LocalImageBean;
 public interface DesktopShowDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void saveDesktop(DestopBean... destopBeans);
+    void saveDesktop(DestopBean destopBeans);
+
+    @Query("DELETE from desktop_show")
+    void deleteAll();
 
     @Query("select * from desktop_show")
     DestopBean queryDesktop();

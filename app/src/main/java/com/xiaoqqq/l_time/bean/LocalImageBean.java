@@ -5,7 +5,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 /**
- * @author create by xiaoqqq 2019.07.11
+ * @author create by xiaoqqq gift.07.11
  */
 @Entity(tableName = "local_image")
 public class LocalImageBean {

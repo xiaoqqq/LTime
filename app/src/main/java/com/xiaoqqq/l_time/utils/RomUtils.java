@@ -12,7 +12,7 @@ import java.util.Properties;
  * File description.
  *
  * @author Alrict
- * @date 2019/4/4
+ * @date gift/4/4
  */
 public class RomUtils {
   class AvailableRomType {

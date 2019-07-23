@@ -15,7 +15,7 @@ import me.jessyan.autosize.unit.Subunits;
 /**
  * @author xiaoqqq
  * @package com.xiaoqqq.l_time
- * @date 2019-07-08
+ * @date gift-07-08
  * @describe 入口
  */
 public class LtApp extends Application {
